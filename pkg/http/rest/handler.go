@@ -5,15 +5,13 @@ import (
 	"github.com/go-chi/chi"
 )
 
-func CreateRouter(mRepos management.MovieRepository) chi.Router {
+func CreateRouter(s management.Service) chi.Router {
 	r := chi.NewRouter()
 
 	r.Route("/api", func(r chi.Router){
-		h := managementHandler{repo:mRepos}
+		h := managementHandler{s: s}        
 		r.Mount("/v1", h.router())
 	})
-	
+
 	return r
 }
-
-
