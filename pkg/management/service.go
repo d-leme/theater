@@ -22,7 +22,7 @@ func (s *service) CreateMovie(n string, c string) error{
 		return err
 	}
 
-	id, _ := uuid.NewV4()
+	id := uuid.NewV4()
 	movie := Movie{
 		Id:id,
 		Name:n,
