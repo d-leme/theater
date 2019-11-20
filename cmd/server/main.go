@@ -2,8 +2,8 @@ package main
 
 import (
 	"net/http"
-	"github.com/go-hello/pkg/http/rest"
-	"github.com/go-hello/pkg/storage/mem"
+	"github.com/Diego0Leme/theater/pkg/http/rest"
+	"github.com/Diego0Leme/theater/pkg/storage/mem"
 )
 
 func main() {

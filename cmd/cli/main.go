@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/go-hello/pkg/management"
-	"github.com/go-hello/pkg/storage/mem"
+	"github.com/Diego0Leme/theater/pkg/management"
+	"github.com/Diego0Leme/theater/pkg/storage/mem"
 )
 
 func main() {

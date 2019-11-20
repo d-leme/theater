@@ -1,6 +1,6 @@
 package mem
 
-import "github.com/go-hello/pkg/management"
+import "github.com/Diego0Leme/theater/pkg/management"
 
 type movieMemoryRepository struct{}
 

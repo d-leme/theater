@@ -1,7 +1,7 @@
 package rest
 
 import (
-	"github.com/go-hello/pkg/management"
+	"github.com/Diego0Leme/theater/pkg/management"
 	"github.com/go-chi/chi"
 )
 
