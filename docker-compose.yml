@@ -7,9 +7,11 @@ services:
       POSTGRES_PASSWORD: "admin"
     ports:
       - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
     networks:
       - postgres-network
-      
+
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -22,6 +24,24 @@ services:
     networks:
       - postgres-network
 
+  server:
+    build: .
+    environment:
+      SQL_HOST: "postgresdb" 
+      SQL_PORT: 5432 
+      SQL_USER: "postgres" 
+      SQL_PASSWORD: "admin" 
+      SQL_DBNAME: "theater_db" 
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresdb
+    networks:
+      - postgres-network
+
 networks: 
   postgres-network:
     driver: bridge
+
+volumes:
+  data:

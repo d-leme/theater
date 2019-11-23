@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"os"
 	"net/http"
 
 	"github.com/Diego0Leme/theater/pkg/http/rest"
@@ -11,16 +12,16 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "postgres"
-	password = "admin"
-	dbname   = "testdb"
-)
-
 func main() {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
+	var (
+		host = os.Getenv("SQL_HOST")
+		port = os.Getenv("SQL_PORT")
+		user = os.Getenv("SQL_USER")
+		password = os.Getenv("SQL_PASSWORD")
+		dbname = os.Getenv("SQL_DBNAME")
+	)
+
+	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname)
 
 	db, err := sql.Open("postgres", psqlInfo)

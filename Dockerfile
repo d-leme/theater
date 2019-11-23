@@ -1,8 +1,5 @@
 FROM golang:1.12-stretch AS builder
 
-ENV GO111MODULE=on \
-    CGO_ENABLED=1
-
 WORKDIR /build
 
 COPY go.mod .
@@ -11,10 +8,14 @@ RUN go mod download
 
 COPY . .
 
-RUN go build ./cmd/server/main.go
+# Reference https://medium.com/@diogok/on-golang-static-binaries-cross-compiling-and-plugins-1aed33499671
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+    go build -a -tags netgo -ldflags '-w' ./cmd/server/main.go
+
+ENTRYPOINT ["./main"]
 
 FROM scratch
 
-COPY --chown=0:0 --from=builder /build /
+COPY --chown=0:0 --from=builder /build/main .
 
 ENTRYPOINT ["./main"]
